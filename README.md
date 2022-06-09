@@ -13,7 +13,7 @@ The entire course is designed based on [TiDB](https://github.com/pingcap/tidb).
 The course is organized into six parts:
 
 - [x] [Simple explanation of SQL and relational algebra](./courses/proj1-README-zh_CN.md)
-- [ ] [Parser](./courses/proj2-README-zh_CN.md)
+- [x] [Parser](./courses/proj2-README-zh_CN.md) ([日本語](./courses/proj2-README-ja_JP.md.md))
 - [ ] [DDL](./courses/proj3-README-zh_CN.md)
 - [ ] [Optimizer](./courses/proj4-README-zh_CN.md)
 - [ ] [Executor](./courses/proj5-README-zh_CN.md)
