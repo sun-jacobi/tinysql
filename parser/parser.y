@@ -811,6 +811,8 @@ import (
 	InsertValues			"Rest part of INSERT/REPLACE INTO statement"
 	JoinTable 			"join table"
 	JoinType			"join type"
+	JoinSpec            "join specification"
+	JoinSpecOpt         "join specification optional"
 	LocationLabelList		"location label name list"
 	LikeEscapeOpt 			"like escape option"
 	LikeTableWithOrWithoutParen	"LIKE table_name or ( LIKE table_name )"
@@ -3819,6 +3821,24 @@ JoinTable:
          * }
          *
 	 */
+|   TableRef JoinType OuterOpt "JOIN" TableRef JoinSpec
+	{
+		$$ = &ast.Join{Left: $1.(ast.ResultSetNode), Right: $5.(ast.ResultSetNode), Tp: $2.(ast.JoinType), On: $6.(*ast.OnCondition)}
+	}
+
+
+
+
+JoinSpecOpt:
+	{}
+|	JoinSpec
+
+
+JoinSpec:
+	"ON" Expression
+	{
+		$$ = &ast.OnCondition{Expr:$2.(ast.ExprNode)}
+	}
 
 JoinType:
 	"LEFT"
@@ -3837,7 +3857,6 @@ OuterOpt:
 CrossOpt:
 	"JOIN"
 |	"INNER" "JOIN"
-
 
 LimitClause:
 	{
